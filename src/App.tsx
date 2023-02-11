@@ -1,5 +1,7 @@
 import React from 'react';
-import { Timer } from './componets/Timer';
+import { Input } from './componets/Input';
+//import { Timer } from './componets/Timer';
+
 
 // import logo from './logo.svg';
 // import './App.css';
@@ -26,10 +28,11 @@ import { Timer } from './componets/Timer';
 // }
 
 function App() {
-  return <div>
-    <Timer timeZoneIndex={20}></Timer>
-    <Timer timeZoneIndex={5}></Timer>
-  </div>
+  function processInput(value: string): string {
+    console.log(`APP component received value "${value}"`);
+    return "'OK'";
+  }
+  return <Input inputId={'input-1'} inputProcess={processInput} />
 }
 
 export default App;
