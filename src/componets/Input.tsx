@@ -1,24 +1,28 @@
-import { type } from "os";
 import React, { useEffect } from "react";
+import { Alert } from "./Alert";
 type InputProps = {
     inputId: string;
     inputProcess: (value: string) => string
 }
-export const Input: React.FC<InputProps> = 
-({inputId, inputProcess}) => {
-
-    // the result will be undefined
-    // const inputElement: HTMLInputElement | null = document.getElementById("1") as HTMLInputElement;
-    // function processGo(): void {
-    //     console.log(inputElement?.value)
-    // }
-    // we have to use useEffect
-
+export const Input: React.FC<InputProps> = ({ inputId, inputProcess }) => {
     let inputElement: HTMLInputElement | null
+    // const [flAlert, setFlag] = React.useState(false);
+
+    const [message, setMessage] = React.useState('');
 
     function processGo(): void {
-       console.log(`Input component prints out what the function inputProcess has returned ${inputProcess(inputElement!.value)}`)
-        inputElement!.value = '';
+        //setFlag(false);
+        setMessage('');
+        // console.log(`Input component prints out what the function inputProcess has returned ${inputProcess(inputElement!.value)}`)
+        const messageRet: string = inputProcess(inputElement!.value);
+
+        if (messageRet == '') {
+            inputElement!.value = '';
+        } else {
+            //   setFlag(true);
+            setMessage(messageRet);
+        }
+
     }
     useEffect(() => {
         inputElement = document.getElementById(inputId) as HTMLInputElement;
@@ -26,5 +30,7 @@ export const Input: React.FC<InputProps> =
     return <div>
         <input id={inputId} />
         <button onClick={processGo}>GO</button>
+        {message && <Alert type={"error"} message={message} />}
     </div>
+
 }

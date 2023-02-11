@@ -29,8 +29,12 @@ import { Input } from './componets/Input';
 
 function App() {
   function processInput(value: string): string {
-    console.log(`APP component received value "${value}"`);
-    return "'OK'";
+    // console.log(`APP component received value "${value}"`);
+    let res: string = '';
+    if (value.toLowerCase().includes("hello")) {
+      res = "Get tired from HELLO. It's forbidden word";
+    }
+    return res;
   }
   return <Input inputId={'input-1'} inputProcess={processInput} />
 }
