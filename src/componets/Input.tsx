@@ -1,12 +1,13 @@
 import React, { useEffect } from "react"
 import { Alert } from "./Alert";
 type InputProps = {
-    inputId: string;
+    placeHolder: string;
     inputProcess: (value: string)=>string
 }
-export const Input: React.FC<InputProps> = ({inputId, inputProcess}) => {
+export const Input: React.FC<InputProps> = ({placeHolder, inputProcess}) => {
     let inputElement: HTMLInputElement | null
-   
+   const [inputId] =
+    React.useState(Math.round(Math.random() * 100000000) + '');
     const [message, setMessage] = React.useState('')
     function processGo(): void {
        setMessage('')
@@ -25,7 +26,7 @@ export const Input: React.FC<InputProps> = ({inputId, inputProcess}) => {
        inputElement = document.getElementById(inputId) as HTMLInputElement;
     })
     return <div>
-        <input id={inputId}/>
+        <input id={inputId} placeholder={placeHolder}/>
         <button onClick={processGo}>GO</button>
         {message && <Alert type={"error"} message={message}/>}
     </div>

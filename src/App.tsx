@@ -13,7 +13,7 @@ function App() {
     </div>
     <div style={flexRow}>
       <Timer cityOrCountry="India "></Timer>
-      <Timer cityOrCountry={"Cuba"}></Timer>
+      <Timer cityOrCountry="Cuba"></Timer>
     </div>
 
   </div>
