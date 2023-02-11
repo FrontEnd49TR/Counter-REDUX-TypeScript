@@ -1,36 +1,32 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from "react"
 import { Alert } from "./Alert";
 type InputProps = {
     inputId: string;
-    inputProcess: (value: string) => string
+    inputProcess: (value: string)=>string
 }
-export const Input: React.FC<InputProps> = ({ inputId, inputProcess }) => {
+export const Input: React.FC<InputProps> = ({inputId, inputProcess}) => {
     let inputElement: HTMLInputElement | null
-    // const [flAlert, setFlag] = React.useState(false);
-
-    const [message, setMessage] = React.useState('');
-
+   
+    const [message, setMessage] = React.useState('')
     function processGo(): void {
-        //setFlag(false);
-        setMessage('');
-        // console.log(`Input component prints out what the function inputProcess has returned ${inputProcess(inputElement!.value)}`)
+       setMessage('')
         const messageRet: string = inputProcess(inputElement!.value);
-
+        
         if (messageRet == '') {
             inputElement!.value = '';
         } else {
-            //   setFlag(true);
+            
             setMessage(messageRet);
-        }
 
+        }
+        
     }
     useEffect(() => {
-        inputElement = document.getElementById(inputId) as HTMLInputElement;
+       inputElement = document.getElementById(inputId) as HTMLInputElement;
     })
     return <div>
-        <input id={inputId} />
+        <input id={inputId}/>
         <button onClick={processGo}>GO</button>
-        {message && <Alert type={"error"} message={message} />}
+        {message && <Alert type={"error"} message={message}/>}
     </div>
-
 }

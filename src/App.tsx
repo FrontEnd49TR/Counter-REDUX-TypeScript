@@ -1,42 +1,23 @@
 import React from 'react';
-import { Input } from './componets/Input';
-//import { Timer } from './componets/Timer';
+import { Timer } from './componets/Timer';
 
-
-// import logo from './logo.svg';
-// import './App.css';
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.tsx</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
 
 function App() {
-  function processInput(value: string): string {
-    // console.log(`APP component received value "${value}"`);
-    let res: string = '';
-    if (value.toLowerCase().includes("hello")) {
-      res = "Get tired from HELLO. It's forbidden word";
-    }
-    return res;
-  }
-  return <Input inputId={'input-1'} inputProcess={processInput} />
+  const flexColumn: React.CSSProperties = { display: "flex", flexDirection: "column" }
+  const flexRow: React.CSSProperties = { display: "flex", flexDirection: "row" , 
+  justifyContent: "space-around", width: "50vw", marginTop: "4vh"}
+  return <div style={flexColumn}>
+    <div style={flexRow}>
+      <Timer cityOrCountry="London"></Timer>
+      <Timer cityOrCountry="Paris"></Timer>
+    </div>
+    <div style={flexRow}>
+      <Timer cityOrCountry="India "></Timer>
+      <Timer cityOrCountry={"Cuba"}></Timer>
+    </div>
+
+  </div>
+
 }
 
 export default App;
