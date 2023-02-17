@@ -1,44 +1,30 @@
-
 import React from 'react';
-import { Input } from './componets/Input';
-import { Timer } from './componets/Timer';
-
+import { Input } from './components/Input';
 
 function App() {
-  const flexColumn: React.CSSProperties = { display: "flex", flexDirection: "column" }
-  const flexRow: React.CSSProperties = { display: "flex", flexDirection: "row" , 
-  justifyContent: "space-around", width: "50vw", marginTop: "4vh"}
-  const [cityCountries, setCityCountries] = React.useState<string[]>([]);
-  function inputProcessFun(value: string): string {
-    const cityCountriesFromInput: string[] = value.split("#");
-    let res:string = '';
-    if(cityCountriesFromInput.length % 2 != 0) {
-      res = "There should be even number of the country/cities"
-    } else {
-        setCityCountries(cityCountriesFromInput.slice());
-    }
-    return res;
+  const properties: React.CSSProperties = {
+    display: "flex",
+    flexWrap: "wrap"
   }
-  function getTimers(): JSX.Element[] {
-    const res: JSX.Element[] = [];
-    for(let i = 0; i < cityCountries.length; i+=2) {
-      res.push(<div style={flexRow}>
-        <Timer cityOrCountry={cityCountries[i]} />
-        <Timer cityOrCountry={cityCountries[i + 1]} />
-      </div>)
-    }
-
-    return res;
+  const [colors, setColors] = React.useState<string[]>([])
+  function creatingDivs(value: string): string {
+    const colors: string[] = value.split("#"); // red#green => ["red", "green"]
+    setColors(colors.slice());
+    return '';
   }
-
-  return <div style={flexColumn}>
-    <Input placeHolder={'enter city/countries separated by #'}
-     inputProcess={inputProcessFun}/>
-     {getTimers()}
-    
-
-  </div>
-
+  function getDivs(colors: string[]): JSX.Element[] {
+    return colors.map(color => <div style={{
+      width: "5vw", height: "5vw",
+      backgroundColor: color
+    }}></div>)
+  }
+  return <section style={{ display: "flex", flexDirection: "column" }}>
+    <Input placeHolder={'Enter colors separated by #'}
+      inputProcess={creatingDivs}></Input>
+    <section style={properties}>
+      {getDivs(colors)}
+    </section>
+  </section>
 }
 
 export default App;
