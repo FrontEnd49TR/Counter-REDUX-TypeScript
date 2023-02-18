@@ -7,7 +7,7 @@ export function getRandomNumber(min: number, max: number,
            max++;
        }
        if (min == max) {
-           throw "min may not be equaled to max";
+           throw "MIN may not be equaled to MAX";
        }
        if (min > max) {
            [min, max] = [max, min];
@@ -16,9 +16,6 @@ export function getRandomNumber(min: number, max: number,
        
 }
 export function getElement<T>(array: T[]): T {
-
-// T- Type
-
    return array[getRandomNumber(0, array.length)];
    
 }
