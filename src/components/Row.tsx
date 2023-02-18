@@ -2,7 +2,7 @@ import React from "react";
 type Props = {
     row: number[]
 }
-export const Row: React.FC<Props> = ({row}) => {
+export const Row: React.FC<Props> = ({ row }) => {
     function getSize() {
         return Math.min(window.innerHeight, window.innerWidth) / row.length - 2;
     }
@@ -15,7 +15,9 @@ export const Row: React.FC<Props> = ({row}) => {
             border: "solid gray 1px"
         }
     }
-    return <div style={{display: "flex", flexDirection: "row"}}>
-            {row.map(num => <div style={getStyle(num)}></div>)}
+
+    // change in .map()
+    return <div style={{ display: "flex", flexDirection: "row" }}>
+        {row.map((num, i) => <div style={getStyle(num)} key={i}></div>)}
     </div>
 }

@@ -4,14 +4,19 @@ export class LifeMatrix {
         return this._numbers;
     }
     nextStep(): number[][] {
-        const newMatrix: number[][] = JSON.parse(JSON.stringify(this._numbers));
-        for (let i = 0; i < this._numbers.length; i++) {
-            for (let j = 0; j < this._numbers[i].length; j++) {
-                newMatrix[i][j] = this.getNewCell(i, j);
-            }
-        }
-        this._numbers = newMatrix;
-        return newMatrix;
+        // const newMatrix: number[][] = JSON.parse(JSON.stringify(this._numbers));
+        // for(let i =0; i < this._numbers.length; i++) {
+        //     for(let j = 0; j < this._numbers[i].length; j++) {
+        //         newMatrix[i][j] = this.getNewCell(i, j);
+        //     }
+        // }
+        // this._numbers = newMatrix;
+        // return newMatrix;
+        this._numbers = this._numbers.map((__, i) => this.getNewRow(i));
+        return this._numbers;
+    }
+    getNewRow(i: number): number[] {
+        return this._numbers[i].map((__, j) => this.getNewCell(i, j));
     }
 
     getNewCell(i: number, j: number): number {
